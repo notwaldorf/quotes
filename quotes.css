@@ -231,6 +231,16 @@ body {
     height: 100dvh;
     box-shadow: none;
   }
+  .stripe {
+    left: 16px;
+  }
+  .corner.tl {
+    top: 16px;
+    left: 16px;
+  }
+  .corner.br {
+    right: 16px;
+  }
 }
 
 @media (max-height: 600px) {
