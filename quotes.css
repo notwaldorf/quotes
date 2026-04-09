@@ -89,7 +89,7 @@ body {
 /* ── QUOTE TEXT ── */
 .quote-text {
   font-family: var(--serif);
-  font-size: clamp(30px, 3.2vw, 60px);
+  font-size: 2.2rem;
   line-height: 1.2;
   color: var(--ink);
   font-style: italic;
@@ -219,6 +219,14 @@ body {
   color: var(--muted);
   z-index: 2;
 }
+
+
+@media (max-width: 500px) {
+  .quote-text {
+    font-size: 1.8rem;
+  }
+}
+
 
 @media (max-height: 600px) {
   html, body { overflow: auto; }
