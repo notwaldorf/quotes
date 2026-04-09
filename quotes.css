@@ -224,18 +224,6 @@ body {
   .poster { height: auto; min-height: 600px; }
 }
 
-/* ── INFO BUTTON ── */
-.btn.info-btn {
-  border-color: var(--muted);
-  color: var(--muted);
-  padding: 8px 11px;
-}
-.btn.info-btn:hover {
-  background: var(--muted);
-  color: var(--bg);
-  border-color: var(--muted);
-}
-
 /* ── ABOUT OVERLAY ── */
 .about-overlay {
   position: absolute;
@@ -304,9 +292,10 @@ body {
   color: var(--bg);
 }
 
-.about-content p {
+.about-content p,
+.about-content a:link, .about-content a:visited {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.8;
   letter-spacing: 0.04em;
   color: var(--bg);
@@ -325,7 +314,7 @@ body {
 .about-divider {
   width: 32px;
   height: 1.5px;
-  background: var(--bg);
+  background: var(--accent);
 }
 
 .about-meta {

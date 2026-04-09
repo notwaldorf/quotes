@@ -58,9 +58,9 @@ const palettes = [
   ['#1A1030', '#E8E0F8', '#C87AFF'],
   ['#2A2A2A', '#E8D88A', '#E8D88A'],
  ['#F0EFEA', '#003080', '#E8002D'],
- ['#DC2777', 'white', 'white'],
- ['#E3E96F', '#6E2473', '#6E2473'],
- ['#FFB4EF', '#200006', '#6C2473'],
+['#DC2777', 'white', '#e4ff18'],
+['#E3E96F', '#6E2473', '#9C69A0'],
+['#FFB4EF', '#200006', '#6E2473'],
  ['#2F24CA', '#D7FC48', '#D7FC48'],
  ['#FAFF24', '#9D15B1', '#9D15B1'],
  ['#FFECA6', '#41439D', '#41439D'],
@@ -71,7 +71,7 @@ let lastPaletteIndex = -1;
 
 function pickPalette() {
   let idx;
-  do { idx = Math.floor(Math.random() * palettes.length); } while (idx === lastPaletteIndex);
+  do { idx = Math.floor(Math.random() * palettes.length); } while (palettes.length !== 1 && idx === lastPaletteIndex);
   lastPaletteIndex = idx;
   return palettes[idx];
 }
@@ -95,8 +95,9 @@ function render(index) {
 
   setTimeout(() => {
     const [id, quote, author, source] = quotes[index];
+    const displayQuote = /[.!?,;)"'\]]$/.test(quote) ? quote : quote + '.';
 
-    document.getElementById('quoteBody').textContent = quote;
+    document.getElementById('quoteBody').textContent = displayQuote;
     document.getElementById('authorName').textContent = author;
     document.getElementById('sourceName').textContent = source;
     document.getElementById('ghostNum').textContent = String(id).padStart(2, '0');
@@ -133,8 +134,8 @@ function closeAbout() {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeAbout(); return; }
   if (document.getElementById('aboutOverlay').classList.contains('open')) return;
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
-  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   navigate(-1);
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(-1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   navigate(1);
   if (e.key === 'r' || e.key === 'R') navigateRandom();
 });
 
