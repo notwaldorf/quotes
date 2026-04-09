@@ -1,0 +1,335 @@
+:root {
+  --bg: #F5F0E8;
+  --ink: #1A1A1A;
+  --accent: #E8002D;
+  --muted: #9A9080;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --mono: 'Space Mono', monospace;
+  --display: 'Bebas Neue', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: #1A1A1A;
+  font-family: var(--mono);
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── POSTER SHELL ── */
+.poster {
+  position: relative;
+  width: min(520px, 92vw);
+  height: min(720px, 92vh);
+  background: var(--bg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.4s ease;
+  box-shadow: 0 40px 80px rgba(0,0,0,.25), 0 10px 20px rgba(0,0,0,.15);
+}
+
+/* ── GHOST NUMBER ── */
+.ghost-number {
+  position: absolute;
+  top: -0.15em;
+  right: -0.05em;
+  font-family: var(--display);
+  font-size: clamp(180px, 40vw, 340px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--accent);
+  opacity: 0.18;
+  user-select: none;
+  pointer-events: none;
+  transition: opacity 0.4s;
+  z-index: 0;
+}
+
+/* ── RED STRIPE ── */
+.stripe {
+  position: absolute;
+  bottom: 120px;
+  left: 0;
+  width: 5px;
+  height: 160px;
+  background: var(--accent);
+  transition: height 0.4s;
+}
+
+/* ── CONTENT AREA ── */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(28px, 7%, 52px) clamp(28px, 8%, 56px) 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── LABEL ── */
+.label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+/* ── QUOTE TEXT ── */
+.quote-text {
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.2vw, 60px);
+  line-height: 1;
+  color: var(--ink);
+  font-style: italic;
+  transition: opacity 0.3s;
+}
+
+.quote-text .open-mark {
+  font-size: 2em;
+  line-height: 0;
+  vertical-align: -0.35em;
+  margin-right: 0.04em;
+  font-family: var(--display);
+  color: var(--accent);
+  font-style: normal;
+  display: inline-block;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  margin: 28px 0 18px;
+}
+
+/* ── ATTRIBUTION ── */
+.attribution {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.attribution .author {
+  font-family: var(--display);
+  font-size: clamp(18px, 4vw, 30px);
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.attribution .source {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* ── FOOTER ── */
+.footer {
+  position: relative;
+  z-index: 2;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(20px, 6%, 48px);
+  background: var(--bg);
+}
+
+.footer-info {
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.controls {
+  display: flex;
+  gap: 6px;
+}
+
+.btn {
+  appearance: none;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.btn:active { transform: scale(0.96); }
+
+.btn.accent {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btn.accent:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ── TRANSITION FLASH ── */
+.poster.flash .quote-text {
+  opacity: 0;
+}
+
+/* ── CORNER MARKS ── */
+.corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  z-index: 0;
+  pointer-events: none;
+}
+.corner.tl { top: 12px; left: 12px; border-top: 1.5px solid var(--accent); border-left: 1.5px solid var(--accent); }
+.corner.br { bottom: 90px; right: 12px; border-bottom: 1.5px solid var(--accent); border-right: 1.5px solid var(--accent); }
+
+/* ── INDEX BADGE ── */
+.index-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-family: var(--display);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+  z-index: 2;
+}
+
+@media (max-height: 600px) {
+  html, body { overflow: auto; }
+  .poster { height: auto; min-height: 600px; }
+}
+
+/* ── INFO BUTTON ── */
+.btn.info-btn {
+  border-color: var(--muted);
+  color: var(--muted);
+  padding: 8px 11px;
+}
+.btn.info-btn:hover {
+  background: var(--muted);
+  color: var(--bg);
+  border-color: var(--muted);
+}
+
+/* ── ABOUT OVERLAY ── */
+.about-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  color: var(--bg);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(28px, 8%, 56px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.about-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.about-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 48px;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.about-close:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 360px;
+}
+
+.about-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.about-title {
+  font-family: var(--display);
+  font-size: clamp(36px, 9vw, 64px);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--bg);
+}
+
+.about-content p {
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  color: var(--bg);
+}
+
+.about-content kbd {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 1px 5px;
+  font-family: var(--mono);
+  font-size: 9px;
+  border-radius: 2px;
+}
+
+.about-divider {
+  width: 32px;
+  height: 1.5px;
+  background: var(--bg);
+}
+
+.about-meta {
+  font-size: 9px !important;
+  color: rgba(240,235,224,0.35) !important;
+  line-height: 1.7 !important;
+}

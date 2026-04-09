@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quote Poster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="quotes.css">
+</head>
+<body>
+
+<div class="poster" id="poster">
+  <div class="ghost-number" id="ghostNum">1</div>
+  <div class="stripe"></div>
+  <div class="corner tl"></div>
+  <div class="corner br"></div>
+
+  <div class="content">
+    <div class="quote-text" id="quoteText">
+      <span class="open-mark">“</span><span id="quoteBody"></span>
+    </div>
+    <div class="divider"></div>
+    <div class="attribution">
+      <div class="author" id="authorName"></div>
+      <div class="source" id="sourceName"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="controls">
+      <button class="btn" onclick="navigate(-1)">← Prev</button>
+      <button class="btn accent" onclick="navigateRandom()">Random</button>
+      <button class="btn" onclick="navigate(1)">Next →</button>
+      <button class="btn info-btn" onclick="openAbout()" title="About">?</button>
+    </div>
+  </div>
+
+  <!-- About overlay -->
+  <div class="about-overlay" id="aboutOverlay" aria-hidden="true">
+    <button class="about-close" onclick="closeAbout()" aria-label="Close">×</button>
+    <div class="about-content">
+      <h2 class="about-title">About<br>These quotes</h2>
+      <p>I've been saving quotes to a note app for over a decade. I thought it was about time I gave them a pretty home.</p>
+      <p>Navigate with the arrow keys or swipe left and right on touch devices. Hit <kbd>R</kbd> to jump to a random quote.</p>
+      <div class="about-divider"></div>
+      <p>Made by Monica</p>
+    </div>
+  </div>
+</div>
+
+<script src="quotes.js"></script>
+</body>
+</html>
