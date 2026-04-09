@@ -103,7 +103,10 @@ function render(index) {
     document.getElementById('ghostNum').textContent = String(id).padStart(2, '0');
   
     applyPalette(poster, pickPalette());
-    history.replaceState(null, '', '?id=' + quotes[index][0]);
+    const isFirst = !window.location.search;
+    (isFirst ? history.pushState : history.replaceState).call(history, null, '', '?id=' + quotes[index][0]);
+
+    //history.replaceState(null, '', '?id=' + quotes[index][0]);
 
     poster.classList.remove('flash');
   }, 160);
