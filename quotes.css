@@ -28,7 +28,7 @@ body {
 .poster {
   position: relative;
   width: min(520px, 92vw);
-  height: min(720px, 92vh);
+  height: min(720px, 92dvh);
   background: var(--bg);
   overflow: hidden;
   display: flex;
@@ -225,8 +225,13 @@ body {
   .quote-text {
     font-size: 1.8rem;
   }
+  /* full width on mobile */
+  .poster {
+    width: 100vw;
+    height: 100dvh;
+    box-shadow: none;
+  }
 }
-
 
 @media (max-height: 600px) {
   html, body { overflow: auto; }
