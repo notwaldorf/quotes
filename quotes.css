@@ -90,7 +90,7 @@ body {
 .quote-text {
   font-family: var(--serif);
   font-size: clamp(30px, 3.2vw, 60px);
-  line-height: 1;
+  line-height: 1.2;
   color: var(--ink);
   font-style: italic;
   transition: opacity 0.3s;
