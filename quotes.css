@@ -93,7 +93,7 @@ body {
   line-height: 1.2;
   color: var(--ink);
   font-style: italic;
-  transition: opacity 0.3s;
+  transition: opacity 0.4s;
 }
 
 .quote-text .open-mark {
@@ -173,7 +173,7 @@ body {
   text-transform: uppercase;
   padding: 8px 14px;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
 }
 
 .btn:hover {
@@ -189,13 +189,13 @@ body {
 }
 .btn.accent:hover {
   background: var(--accent);
-  color: #fff;
+  color: var(--bg);
 }
 
 /* ── TRANSITION FLASH ── */
-.poster.flash .quote-text {
+/* .poster.flash .quote-text {
   opacity: 0;
-}
+} */
 
 /* ── CORNER MARKS ── */
 .corner {
@@ -261,7 +261,7 @@ body {
   padding: clamp(28px, 8%, 56px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.4s ease;
 }
 
 .about-overlay.open {
