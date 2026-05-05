@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quotes — Timeline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="timeline.css">
+</head>
+<body>
+
+<header class="page-header">
+  <div class="masthead">
+    <div class="masthead-eyebrow">Quotes I've collected</div>
+    <h1 class="masthead-title">Timeline</h1>
+  </div>
+  <nav class="page-nav">
+    <a class="nav-link" href="index.html">← Posters</a>
+    <button class="nav-link nav-info" onclick="openAbout()" title="About">?</button>
+  </nav>
+</header>
+
+<aside class="year-pin" id="yearPin" aria-hidden="true"></aside>
+
+<main class="timeline" id="timeline">
+  <!-- Years and entries injected by JS -->
+  <div class="loading">Loading the archive…</div>
+</main>
+
+<footer class="page-footer">
+  <div class="footer-rule"></div>
+  <div class="footer-meta">
+    <span id="countLabel">— quotes</span>
+    <span class="footer-dot">•</span>
+    <span id="rangeLabel">spanning —</span>
+  </div>
+</footer>
+
+<!-- About overlay -->
+<div class="about-overlay" id="aboutOverlay" aria-hidden="true">
+  <button class="about-close" onclick="closeAbout()" aria-label="Close">×</button>
+  <div class="about-content">
+    <div class="about-eyebrow">Some context</div>
+    <h2 class="about-title">The <br>timeline</h2>
+    <p>Every quote I've saved, in the order I saved it. Tap any entry to open the poster.</p>
+    <p>Some years are loud, some are quiet — that's just how reading goes. The dates get blurrier the further back you go; I only started using Goodreads around 2019, so anything before that is dated by vibes. The quotes themselves still live in one date-less, biblical-length note.
+    </p>
+    <div class="about-divider"></div>
+    <p class="about-meta">Made by <a href="https://meowni.ca">Monica Dinculescu</a>.</p>
+  </div>
+</div>
+
+<script src="timeline.js"></script>
+</body>
+</html>

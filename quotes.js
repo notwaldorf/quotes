@@ -19,8 +19,9 @@ function parseCSV(text) {
         current += ch;
       }
     }
+
     cols.push(current.trim());
-    return [Number(cols[0]), cols[1], cols[2], cols[3]];
+    return [Number(cols[0]), cols[1], cols[2], cols[3], cols[4]];
   }).filter(row => row[0] && row[1]);
 }
 
@@ -94,12 +95,13 @@ function render(index) {
   poster.classList.add('flash');
 
   setTimeout(() => {
-    const [id, quote, author, source] = quotes[index];
+    const [id, quote, author, source, date] = quotes[index];
     const displayQuote = /[.!?,;)"'\]]$/.test(quote) ? quote : quote + '.';
 
     document.getElementById('quoteBody').textContent = displayQuote;
     document.getElementById('authorName').textContent = author;
     document.getElementById('sourceName').textContent = source;
+    document.getElementById('quoteDate').textContent = date;
     document.getElementById('ghostNum').textContent = String(id).padStart(2, '0');
   
     applyPalette(poster, pickPalette());

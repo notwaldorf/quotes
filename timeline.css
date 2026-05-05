@@ -1,0 +1,471 @@
+:root {
+  --bg: #F5F0E8;
+  --ink: #1A1A1A;
+  --accent: #E8002D;
+  --muted: #9A9080;
+  --rule: #D8CFBE;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --mono: 'Space Mono', monospace;
+  --display: 'Bebas Neue', sans-serif;
+
+  /* Spine geometry */
+  --spine-x: clamp(110px, 22%, 220px);   /* where the vertical rule sits */
+  --tick-r: 5px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100dvh;
+  padding-bottom: 120px;
+  background-image:
+    radial-gradient(rgba(26,26,26,0.05) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+a { color: inherit; }
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.page-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--bg);
+  border-bottom: 1.5px solid var(--ink);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 18px clamp(20px, 4vw, 48px) 14px;
+  gap: 24px;
+}
+
+.masthead-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.masthead-title {
+  font-family: var(--display);
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+}
+
+.page-nav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-bottom: 6px;
+}
+
+.nav-link {
+  appearance: none;
+  background: transparent;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-link:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+.nav-info {
+  width: 32px;
+  padding: 8px 0;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+/* ── STICKY YEAR PIN ─────────────────────────────────────── */
+.year-pin {
+  position: fixed;
+  top: 50%;
+  right: clamp(12px, 2vw, 28px);
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: center;
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 96px);
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  opacity: 0.18;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+.year-pin.visible { opacity: 0.22; }
+
+/* ── TIMELINE ─────────────────────────────────────────────── */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px clamp(20px, 4vw, 48px) 40px;
+}
+
+.loading {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  padding: 80px 0;
+}
+
+/* The vertical spine */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--spine-x) - 0.75px);
+  width: 1.5px;
+  background: var(--rule);
+}
+
+/* ── YEAR GROUP ───────────────────────────────────────────── */
+.year-group {
+  position: relative;
+  margin-bottom: 64px;
+}
+
+.year-marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.year-marker::before {
+  /* fat tick that interrupts the spine */
+  content: '';
+  position: absolute;
+  left: calc(var(--spine-x) - 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: var(--accent);
+  z-index: 2;
+}
+
+.year-label {
+  position: absolute;
+  left: 0;
+  width: calc(var(--spine-x) - 24px);
+  text-align: right;
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ── ENTRY (whole row is a link) ──────────────────────────── */
+.entry {
+  position: relative;
+  display: block;
+  padding: 12px 0 14px calc(var(--spine-x) + 28px);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s ease;
+}
+
+.entry:hover {
+  background: rgba(232, 0, 45, 0.04);
+}
+
+.entry::before {
+  /* dot on the spine */
+  content: '';
+  position: absolute;
+  left: calc(var(--spine-x) - var(--tick-r));
+  top: 22px;
+  width: calc(var(--tick-r) * 2);
+  height: calc(var(--tick-r) * 2);
+  background: var(--bg);
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  z-index: 2;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.entry:hover::before {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.3);
+}
+
+.entry-date {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: calc(var(--spine-x) - 24px);
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.entry-id {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.entry-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.entry-meta {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.entry-author {
+  font-family: var(--display);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.entry-source {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Only prepend the em-dash when an author span sits before us. */
+.entry-author + .entry-source::before {
+  content: '— ';
+}
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+.page-footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+
+.footer-rule {
+  height: 1.5px;
+  background: var(--ink);
+  margin-bottom: 14px;
+}
+
+.footer-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.footer-dot { color: var(--accent); }
+
+/* ── ABOUT OVERLAY ────────────────────────────────────────── */
+.about-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--ink);
+  color: var(--bg);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(28px, 8%, 56px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.about-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.about-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 36px;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.about-close:hover { color: var(--accent); }
+
+.about-content {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.about-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.about-title {
+  font-family: var(--display);
+  font-size: clamp(36px, 9vw, 64px);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--bg);
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.about-content p {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+}
+
+.about-content a { color: var(--accent); text-decoration: none; }
+.about-content a:hover { text-decoration: underline; }
+
+.about-divider {
+  width: 32px;
+  height: 1.5px;
+  background: var(--accent);
+  margin: 6px 0;
+}
+
+.about-meta { font-size: 10px !important; opacity: 0.6; }
+
+/* ── MOBILE ───────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  :root {
+    --spine-x: 96px;
+  }
+
+  .page-header {
+    padding: 14px 16px 12px;
+  }
+
+  .masthead-title { font-size: 36px; }
+  .masthead-eyebrow { font-size: 8px; letter-spacing: 0.22em; }
+
+  .nav-link {
+    font-size: 8px;
+    letter-spacing: 0.14em;
+    padding: 7px 10px;
+  }
+  .nav-info { width: 28px; padding: 7px 0; font-size: 11px; }
+
+  .timeline { padding: 28px 14px 24px; }
+
+  .year-group { margin-bottom: 40px; }
+
+  /* On mobile the year label is too wide to sit fully inside the
+     left gutter, so let it overflow naturally and align it left.  */
+  .year-label {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: auto;
+    text-align: left;
+    font-size: 44px;
+    padding-right: 12px;
+    background: var(--bg);  /* mask the spine behind the digits */
+    z-index: 1;
+  }
+
+  .year-marker {
+    margin-bottom: 18px;
+  }
+
+  .year-marker::before {
+    width: 10px;
+    height: 10px;
+    left: calc(var(--spine-x) - 5px);
+    z-index: 0;  /* sits behind the year label on mobile */
+  }
+
+  .entry {
+    padding: 12px 0 12px calc(var(--spine-x) + 16px);
+  }
+
+  .entry-date {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    width: calc(var(--spine-x) - 18px);
+    top: 20px;
+  }
+
+  .entry-quote {
+    font-size: 16px;
+  }
+
+  .entry-author { font-size: 13px; }
+  .entry-source { font-size: 8px; }
+  .entry-author + .entry-source::before { content: ''; }
+
+  .year-pin { display: none; }
+}
+
+/* ── REDUCED MOTION ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

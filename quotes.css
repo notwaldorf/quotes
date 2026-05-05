@@ -137,6 +137,14 @@ body {
   text-transform: uppercase;
 }
 
+.attribution .date {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
 /* ── FOOTER ── */
 .footer {
   position: relative;
@@ -168,11 +176,15 @@ body {
   background: transparent;
   color: var(--ink);
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 8px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding: 8px 14px;
   cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
 }
 
