@@ -92,12 +92,6 @@ a { color: inherit; }
   background: var(--ink);
   color: var(--bg);
 }
-.nav-info {
-  width: 32px;
-  padding: 8px 0;
-  font-size: 12px;
-  letter-spacing: 0;
-}
 
 /* ── STICKY YEAR PIN ─────────────────────────────────────── */
 .year-pin {
@@ -412,9 +406,8 @@ a { color: inherit; }
     letter-spacing: 0.14em;
     padding: 7px 10px;
   }
-  .nav-info { width: 28px; padding: 7px 0; font-size: 11px; }
 
-  .timeline { padding: 28px 14px 24px; }
+  .timeline { padding: 28px 14px 24px; padding-top: 56px; }
 
   .year-group { margin-bottom: 40px; }
 
