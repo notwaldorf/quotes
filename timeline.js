@@ -158,10 +158,15 @@ function buildTimeline(rows) {
       }
 
       article.innerHTML = `
-        <div class="entry-date">${escapeHtml(e._d.label || '·')}</div>
-        <div class="entry-id">№ ${String(e.id).padStart(3, '0')}</div>
-        <div class="entry-quote">${escapeHtml(quote)}</div>
-        <div class="entry-meta">${metaParts.join('')}</div>
+        <div class="entry-left">
+          
+          ${metaParts.length ? `<div class="entry-meta">${metaParts.join('')}</div>` : ''}
+          <div class="entry-date">${escapeHtml(e._d.label || '·')}</div>
+        </div>
+        <div class="entry-right">
+          <div class="entry-id">№ ${String(e.id).padStart(3, '0')}</div>
+          <div class="entry-quote">${escapeHtml(quote)}</div>
+        </div>
       `;
 
       group.appendChild(article);
